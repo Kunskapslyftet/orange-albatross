@@ -1,0 +1,70 @@
+// event model
+{
+	name:'',
+	date:'',
+
+}
+//activity
+{
+	name:'',
+	descriptions:'',
+	location:'',
+	date:'',
+	time:'',
+	athletes:[ref],
+	eventId:3
+
+}
+
+//group model
+{
+	name:'',
+	headCoach:'',
+	assistants:['',''],
+	athletes:[ref],
+
+}
+
+//athlete
+{
+	name:'',
+	emails:['',''],
+	activities:[] //Här ska  vi kanske ha nåt object istället så vi kan sätt en noShow flagga
+}
+
+/*
+Lägg till event
+Lägg till activity och koppla till event.
+*/
+
+var activitySchema = Schema({
+	//_id			: Number,
+	name		: String,
+	description : String,
+	location	: String,
+	date		: Date,
+	time		: String,
+	athletes	: [{type: Schema.Types.ObjectId, ref: 'athlete'}],
+	event 		: {type: Schema.Types.ObjectId, ref: 'event'}
+	});
+
+var athleteSchema = Schema({
+		name		: String,
+		emails 		:[String],
+		phone		:[String],
+		events		:[{type: Schema.Types.ObjectId, ref: 'activity'}]
+	})
+
+
+// var personSchema = Schema({
+//   _id     : Number,
+//   name    : String,
+//   age     : Number,
+//   stories : [{ type: Schema.Types.ObjectId, ref: 'Story' }]
+// });
+
+// var storySchema = Schema({
+//   _creator : { type: Number, ref: 'Person' },
+//   title    : String,
+//   fans     : [{ type: Number, ref: 'Person' }]
+// });
