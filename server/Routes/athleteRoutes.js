@@ -3,26 +3,11 @@ var express = require('express');
 var routes = function(Athlete){
     var athleteRouter = express.Router();
 
+    var athleteController = require('../Controllers/athleteController')(Athlete);
     athleteRouter.route('/')
-        .post(function(req, res){
-            var athlete = new Athlete(req.body);
-
-            athlete.save();
-            res.status(201).send(athlete);
-
-        })
-        .get(function(req,res){
-
-            var query = {};
-            
-            Athlete.find(query, function(err,athletes){
-                if(err)
-                    res.status(500).send(err);
-                else
-                    res.json(athletes);
-            });
-        });
-
+        .post(athleteController.post)
+        .get(athleteController.get);
+    
     athleteRouter.use('/:athleteId', function(req,res,next){
         Athlete.findById(req.params.athleteId, function(err,athlete){
             if(err)

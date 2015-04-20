@@ -3,25 +3,30 @@ var express = require('express');
 var routes = function(Event){
     var eventRouter = express.Router();
 
+var eventController = require('../Controllers/eventController')(Event);
     eventRouter.route('/')
-        .post(function(req, res){
-            var event = new Event(req.body);
+        .post(eventController.post)
+        .get(eventController.get);
 
-            event.save();
-            res.status(201).send(event);
+    // eventRouter.route('/')
+    //     .post(function(req, res){
+    //         var event = new Event(req.body);
 
-        })
-        .get(function(req,res){
+    //         event.save();
+    //         res.status(201).send(event);
 
-            var query = {};
+    //     })
+    //     .get(function(req,res){
+
+    //         var query = {};
             
-            Event.find(query, function(err,events){
-                if(err)
-                    res.status(500).send(err);
-                else
-                    res.json(events);
-            });
-        });
+    //         Event.find(query, function(err,events){
+    //             if(err)
+    //                 res.status(500).send(err);
+    //             else
+    //                 res.json(events);
+    //         });
+    //     });
 
     eventRouter.use('/:eventId', function(req,res,next){
         Event.findById(req.params.eventId, function(err,event){
