@@ -8,26 +8,6 @@ var eventController = require('../Controllers/eventController')(Event);
         .post(eventController.post)
         .get(eventController.get);
 
-    // eventRouter.route('/')
-    //     .post(function(req, res){
-    //         var event = new Event(req.body);
-
-    //         event.save();
-    //         res.status(201).send(event);
-
-    //     })
-    //     .get(function(req,res){
-
-    //         var query = {};
-            
-    //         Event.find(query, function(err,events){
-    //             if(err)
-    //                 res.status(500).send(err);
-    //             else
-    //                 res.json(events);
-    //         });
-    //     });
-
     eventRouter.use('/:eventId', function(req,res,next){
         Event.findById(req.params.eventId, function(err,event){
             if(err)
