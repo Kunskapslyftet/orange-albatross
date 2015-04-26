@@ -28,4 +28,4 @@ describe('Event Controller tests', function (){
 			res.send.calledWith('Name is required').should.equal(true);
 		})
 	})
-})	
+})
