@@ -19,13 +19,8 @@ var PageObject_Skeleton = exports.PageObject_Skeleton = (function () {
     },
     navigateTo: {
       value: function navigateTo(href) {
-        var deferred = protractor.promise.defer();
-        element(by.css("a[href=\"" + href + "\"]")).click().then(function () {
-          browser.sleep(2000);
-          deferred.fulfill(true);
-        });
-
-        return deferred.promise;
+        element(by.css("a[href=\"" + href + "\"]")).click();
+        return browser.waitForHttpDone();
       },
       writable: true,
       configurable: true
@@ -34,4 +29,7 @@ var PageObject_Skeleton = exports.PageObject_Skeleton = (function () {
 
   return PageObject_Skeleton;
 })();
-exports.__esModule = true;
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});

@@ -48,6 +48,7 @@ var PageObject_Welcome = exports.PageObject_Welcome = (function () {
     openAlertDialog: {
       value: function openAlertDialog() {
         var _this = this;
+
         return browser.wait(function () {
           _this.pressSubmitButton();
 
@@ -67,4 +68,7 @@ var PageObject_Welcome = exports.PageObject_Welcome = (function () {
 
   return PageObject_Welcome;
 })();
-exports.__esModule = true;
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});

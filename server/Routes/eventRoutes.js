@@ -32,6 +32,8 @@ var eventController = require('../Controllers/eventController')(Event);
         .put(function(req,res){
             req.event.name = req.body.name;
             req.event.date = req.body.date;
+            
+            req.event.activities =req.body.activities;
             req.event.save(function(err){
                 if(err)
                     res.status(500).send(err);

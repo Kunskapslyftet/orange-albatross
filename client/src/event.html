@@ -1,0 +1,24 @@
+<template>
+	<div class="col-xs-6">
+	<section>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Date</th>
+					<th>No of activities</th>
+				</tr>
+			</thead>
+			<tbody>
+			 <template repeat.for="event of events">
+			      <tr >
+					<td>${event.name}</td>
+			        <td>${event.date}</td>
+					<td>${event.activities.length}</td>
+				</tr>
+			</template>		
+			</tbody>
+		</table>
+	 </section>
+	 </div>
+</template>

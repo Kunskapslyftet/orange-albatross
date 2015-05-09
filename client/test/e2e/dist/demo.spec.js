@@ -1,8 +1,8 @@
 "use strict";
 
 var PageObject_Welcome = require("./welcome.po.js").PageObject_Welcome;
-var PageObject_Skeleton = require("./skeleton.po.js").PageObject_Skeleton;
 
+var PageObject_Skeleton = require("./skeleton.po.js").PageObject_Skeleton;
 
 describe("aurelia skeleton app", function () {
   var po_welcome, po_skeleton;
@@ -11,11 +11,7 @@ describe("aurelia skeleton app", function () {
     po_skeleton = new PageObject_Skeleton();
     po_welcome = new PageObject_Welcome();
 
-    browser.get("http://localhost:9000");
-
-    browser.executeAsyncScript("var cb = arguments[arguments.length - 1];" + "document.addEventListener(\"aurelia-composed\", function (e) {" + "  cb(\"Aurelia App composed\")" + "}, false);").then(function (result) {
-      console.log(result);
-    });
+    browser.loadAndWaitForAureliaPage("http://localhost:9000");
   });
 
   it("should load the page and display the initial page title", function () {
