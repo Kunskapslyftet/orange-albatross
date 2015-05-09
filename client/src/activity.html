@@ -1,0 +1,53 @@
+
+
+<template>
+  <div class="col-xs-6">
+  <section class="au-animate">
+    <h2>${heading}</h2>
+
+    <form role="form" submit.delegate="welcome()">
+       <div class="form-group">
+        <label for="fn">Name</label>
+        <select value.bind="selectedEvent">
+          <option>Select event</option>
+          <option repeat.for="event of events" value.bind="event.name">${event.name}</option>
+        </select>
+       </div>
+      
+      <div class="form-group">
+        <label for="fn">Name</label>
+        <input type="text" value.bind="name" class="form-control" id="name" placeholder="name">
+      </div>
+      <div class="form-group">
+        <label for="ln">Location</label>
+        <input type="text" value.bind="location" class="form-control" id="location" placeholder="location">
+      </div>
+      <div class="form-group">
+        <label for="ln">Description</label>
+        <textarea rows="2" cols="20" value.bind="description" class="form-control" id="description" placeholder="description"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="ln">Date</label>
+        <input type="text" value.bind="date" class="form-control" id="date" placeholder="date">
+      </div>
+      <div class="form-group">
+        <label for="ln">Time</label>
+        <input type="text" value.bind="time" class="form-control" id="time" placeholder="time">
+      </div>
+       <div>     
+        <button type="submit" class="btn btn-default">Submit</button>
+      </div>
+    </form>
+  </section>
+  </div>
+</template>
+
+
+<!-- _Id			: Number,
+	name		: String,
+	description : String,
+	location	: String,
+	date		: Date,
+	time		: String,
+	athletes	: [{type: mongoose.Schema.Types.ObjectId, ref: 'Athlete'}],
+	event 		: {type: mongoose.Schema.Types.ObjectId, ref: 'Event'}-->
