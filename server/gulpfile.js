@@ -13,6 +13,7 @@ gulp.task('default', function(){
         env:{
             PORT:8000
         },
+        nodeArgs: ['--debug'],
         ignore:['./node_modules/**']
     })
     .on('restart', function(){

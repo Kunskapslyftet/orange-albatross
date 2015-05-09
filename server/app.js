@@ -1,3 +1,4 @@
+/// <reference path="../typings/node/node.d.ts"/>
 var express = require('express'),
     mongoose = require('mongoose'),
     bodyParser = require('body-parser');
@@ -6,9 +7,10 @@ var express = require('express'),
 //var db = mongoose.connect('mongodb://localhost/bookApi');
 var db;
 if(process.env.ENV === 'Test'){
-	db = mongoose.connect('mongodb://localhost/bookApi_test');
+	db = mongoose.connect('mongodb://localhost/bookApi');
 } else {
-	db = mongoose.connect('mongodb://albatrossOne:Fritte123@ds033390.mongolab.com:33390/orangealbatross');
+    db = mongoose.connect('mongodb://localhost/bookApi');
+	//db = mongoose.connect('mongodb://albatrossOne:Fritte123@ds033390.mongolab.com:33390/orangealbatross');
 }
 
 var Athlete = require('./models/athleteModel');

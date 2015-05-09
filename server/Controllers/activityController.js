@@ -15,10 +15,8 @@ var activityController = function(Activity){
     }
 
     var get = function(req,res){
-
         var query = {};
 
-        
         Activity.find(query, function(err,activities){
             if(err)
                 res.status(500).send(err);

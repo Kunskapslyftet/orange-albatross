@@ -12,25 +12,28 @@ var eventController = function(Event){
             res.status(201);
             res.send(event);
         }
-    }
+    };
 
     var get = function(req,res){
 
         var query = {};
-
-        
-        Event.find(query, function(err,events){
-            if(err)
+  
+        Event
+            .find(query)
+            .populate('activities')
+            .exec(function (err, events) {
+            if (err) 
                 res.status(500).send(err);
             else
                 res.json(events);
-        });
-    }
+  
+            });
+    };
 
     return {
         post: post,
         get:get
-    }
-}
+    };
+};
 
 module.exports = eventController; 

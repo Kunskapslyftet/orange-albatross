@@ -12,25 +12,24 @@ var athleteController = function(Athlete){
             res.status(201);
             res.send(athlete);
         }
-    }
+    };
 
     var get = function(req,res){
 
         var query = {};
-
-        
+       
         Athlete.find(query, function(err,athletes){
             if(err)
                 res.status(500).send(err);
             else
                 res.json(athletes);
         });
-    }
+    };
 
     return {
         post: post,
         get:get
-    }
-}
+    };
+};
 
 module.exports = athleteController;
