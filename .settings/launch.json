@@ -9,6 +9,7 @@
 			// Type of configuration. Possible values: "node", "mono".
 			"type": "node",
 			// Workspace relative or absolute path to the program.
+			//"program": "server/app.js",
 			"program": "server/app.js",
 			// Automatically stop program after launch.
 			"stopOnEntry": false,

@@ -38,6 +38,10 @@ app.use('/api/athlete', athleteRouter);
 app.use('/api/event', eventRouter); 
 app.use('/api/activity', activityRouter); 
 
+app.get('/api', function(req, res){
+    res.send('welcome to my API API!');
+});
+
 app.get('/', function(req, res){
     res.send('welcome to my API!');
 });

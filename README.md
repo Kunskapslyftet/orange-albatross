@@ -10,6 +10,15 @@ client/gulp watch
 ## Run server unit tests
 >gulp test 
 
+
+## Debug server
+1. install node-inspector
+2. run server "gulp"
+3. run node-inspector from another terminal
+4. browse to the url it tells you ie. http://127.0.0.1:8080/debug?ws=127.0.0.1:8080&port=5858 to start debugging.
+5. collect gold
+
+
 ## Prepare
 1. ```shell
     npm install```
