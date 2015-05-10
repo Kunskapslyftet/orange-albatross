@@ -1,0 +1,43 @@
+
+
+<template>
+  <div class="col-xs-6">
+  <section class="au-animate">
+    <h2>${heading}</h2>
+
+    <form role="form" submit.delegate="create()">
+       <div class="form-group">
+        <label for="fn">Event</label>
+        <select value.bind="selectedEvent" class="form-control">
+          <option>Select event</option>
+          <option repeat.for="event of events" value.bind="event._id">${event.name}</option>
+        </select>
+       </div>
+      <div class="form-group">
+        <label for="fn">Name</label>
+        <input type="text" value.bind="name" class="form-control" id="name" placeholder="name">
+      </div>
+      <div class="form-group">
+        <label for="ln">Description</label>
+        <input type="text" value.bind="description" class="form-control" id="description" placeholder="description">
+      </div>
+      <div class="form-group">
+        <label for="ln">Coach</label>
+        <textarea rows="2" cols="20" value.bind="coach" class="form-control" id="coach" placeholder="coach"></textarea>
+      </div>
+      
+       <div>     
+        <button type="submit" class="btn btn-default">Submit</button>
+      </div>
+    </form>
+  </section>
+  </div>
+  
+   <div class="col-xs-6">
+     <section class="au-animate">
+       <h3>Athletes</h3>
+       <label repeat.for="athlete of athletes" value.bind="event._id">${event.name}</label>
+     </section>
+   </div>
+</template>
+

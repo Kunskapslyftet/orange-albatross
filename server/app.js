@@ -16,6 +16,7 @@ if(process.env.ENV === 'Test'){
 var Athlete = require('./models/athleteModel');
 var Event = require('./models/eventModel');
 var Activity = require('./models/activityModel');
+var Group = require('./models/groupModel');
 
 var app = express();
 
@@ -33,11 +34,13 @@ app.use(function(req, res, next) {
 athleteRouter = require('./Routes/athleteRoutes')(Athlete);
 eventRouter = require('./Routes/eventRoutes')(Event);
 activityRouter = require('./Routes/activityRoutes')(Activity);
+groupRouter = require('./Routes/groupRoutes')(Group);
 
 
 app.use('/api/athlete', athleteRouter); 
 app.use('/api/event', eventRouter); 
-app.use('/api/activity', activityRouter); 
+app.use('/api/activity', activityRouter);
+app.use('/api/group', groupRouter); 
 
 app.get('/api', function(req, res){
     res.send('welcome to my API API!');

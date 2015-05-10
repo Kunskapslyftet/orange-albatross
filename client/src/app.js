@@ -9,6 +9,7 @@ export class App {
       { route: 'flickr',        moduleId: './flickr',       nav: true },
       { route: 'event',        moduleId: './event',       nav: true },
       { route: 'activity',        moduleId: './activity',       nav: true },
+      { route: 'group',        moduleId: './group',       nav: true },
       { route: 'child-router',  moduleId: './child-router', nav: true, title:'Child Router' }
     ]);
 
