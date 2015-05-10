@@ -5,12 +5,12 @@
   <section class="au-animate">
     <h2>${heading}</h2>
 
-    <form role="form" submit.delegate="welcome()">
+    <form role="form" submit.delegate="create()">
        <div class="form-group">
         <label for="fn">Name</label>
         <select value.bind="selectedEvent">
           <option>Select event</option>
-          <option repeat.for="event of events" value.bind="event.name">${event.name}</option>
+          <option repeat.for="event of events" value.bind="event._id">${event.name}</option>
         </select>
        </div>
       
@@ -42,12 +42,3 @@
   </div>
 </template>
 
-
-<!-- _Id			: Number,
-	name		: String,
-	description : String,
-	location	: String,
-	date		: Date,
-	time		: String,
-	athletes	: [{type: mongoose.Schema.Types.ObjectId, ref: 'Athlete'}],
-	event 		: {type: mongoose.Schema.Types.ObjectId, ref: 'Event'}-->

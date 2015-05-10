@@ -11,6 +11,11 @@ export class Activity {
     this.service = service;
     this._ = _;
     this.events = []; 
+    this.name = "";
+    this.description = "";
+    this.date = null;
+    this.time = null;
+    this.selectedEvent = null;
   }
 
   activate() {
@@ -19,8 +24,27 @@ export class Activity {
         this.events = sorted;
     });
   }
- welcome(){
-    alert(`Welcome, ${this.fullName}!`);
+ create(){
+  
+  console.log(this.selectedEvent);
+  
+  var activity = {
+    name: this.name,
+    description: this.description,
+    date: this.date,
+    time: this.time,
+    event: this.selectedEvent
+   };
+   
+   this.service.postActivity(activity).then(results => {
+     //console.log(results);
+     var activityId = results._id;
+     //Update event with this activity
+     var activity = {activities:activityId};
+     this.service.patchEvent(results.event, activity).then(x=> {
+       console.log('gurka');
+     });
+   });
   }
   canDeactivate(){
     

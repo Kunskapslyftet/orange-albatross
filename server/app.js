@@ -26,12 +26,13 @@ app.use(bodyParser.json());
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
   next();
 });
 
 athleteRouter = require('./Routes/athleteRoutes')(Athlete);
 eventRouter = require('./Routes/eventRoutes')(Event);
-activityRouter = require('./Routes/eventRoutes')(Activity);
+activityRouter = require('./Routes/activityRoutes')(Activity);
 
 
 app.use('/api/athlete', athleteRouter); 

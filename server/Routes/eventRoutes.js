@@ -25,15 +25,13 @@ var eventController = require('../Controllers/eventController')(Event);
     });
     eventRouter.route('/:eventId')
         .get(function(req,res){
-
             res.json(req.event);
-
         })
         .put(function(req,res){
             req.event.name = req.body.name;
             req.event.date = req.body.date;
             
-            req.event.activities =req.body.activities;
+            req.event.activities = req.body.activities;
             req.event.save(function(err){
                 if(err)
                     res.status(500).send(err);
@@ -42,15 +40,13 @@ var eventController = require('../Controllers/eventController')(Event);
                 }
             });
         })
+        
         .patch(function(req,res){
-            if(req.body._id)
-                delete req.body._id;
-
-            for(var p in req.body)
-            {
-                req.event[p] = req.body[p];
+           
+            if(req.body.activities){
+                req.event.activities.push(req.body.activities);
             }
-
+            
             req.event.save(function(err){
                 if(err)
                     res.status(500).send(err);
@@ -59,6 +55,7 @@ var eventController = require('../Controllers/eventController')(Event);
                 }
             });
         })
+        
         .delete(function(req,res){
             req.event.remove(function(err){
                 if(err)
