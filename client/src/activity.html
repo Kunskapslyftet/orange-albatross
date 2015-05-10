@@ -7,13 +7,12 @@
 
     <form role="form" submit.delegate="create()">
        <div class="form-group">
-        <label for="fn">Name</label>
-        <select value.bind="selectedEvent">
+        <label for="fn">Event</label>
+        <select value.bind="selectedEvent" class="form-control">
           <option>Select event</option>
           <option repeat.for="event of events" value.bind="event._id">${event.name}</option>
         </select>
        </div>
-      
       <div class="form-group">
         <label for="fn">Name</label>
         <input type="text" value.bind="name" class="form-control" id="name" placeholder="name">

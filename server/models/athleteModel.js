@@ -6,7 +6,7 @@ var athleteModel = new mongoose.Schema({
     emails:[String],
 	phones:[String],
     genre:{type:String},
-    //events:[{type: mongoose.Schema.Types.ObjectId, ref: 'Activity'}]
+    activities:[{type: mongoose.Schema.Types.ObjectId, ref: 'Activity'}]
 });
 
 module.exports =  mongoose.model('Athlete', athleteModel);
