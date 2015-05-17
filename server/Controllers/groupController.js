@@ -12,23 +12,26 @@ var groupController = function(Group){
             res.status(201);
             res.send(group);
         }
-    }
+    };
 
     var get = function(req,res){
         var query = {};
 
-        Group.find(query, function(err,groups){
-            if(err)
+        Group
+        .find(query)
+        .populate('athletes')
+        .exec(function (err, groups) {
+            if (err) 
                 res.status(500).send(err);
             else
                 res.json(groups);
-        });
-    }
+            });
+    };
 
     return {
         post: post,
         get:get
-    }
-}
+    };
+};
 
 module.exports = groupController;

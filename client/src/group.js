@@ -13,41 +13,40 @@ export class Activity {
     this.events = []; 
     this.name = "";
     this.description = "";
-    this.date = null;
-    this.time = null;
-    this.selectedEvent = null;
+    this.coach = null;
     this.heading = 'Group';
   }
 
   activate() {
-      this.service.getEvents().then(lotusNotes => {
+    var self = this;
+      self.service.getEvents().then(lotusNotes => {
         var sorted = _.sortBy(lotusNotes, 'date');
-        this.events = sorted;
+        this.events = sorted;})
+      .then(function(){
+        self.service.getGroups().then(groups => {
+          console.log(groups);
+        });
     });
   }
  create(){
-  
-  console.log(this.selectedEvent);
-  
-  var activity = {
-    name: this.name,
-    description: this.description,
-    date: this.date,
-    time: this.time,
-    event: this.selectedEvent
+    console.log(this.selectedEvent);
+    var group = {
+      name: this.name,
+      description: this.description,
+      event: this.selectedEvent
    };
    
-   this.service.postActivity(activity).then(results => {
+   this.service.postGroup(group).then(results => {
      //console.log(results);
-     var activityId = results._id;
+     //var activityId = results._id;
      //Update event with this activity
-     var activity = {activities:activityId};
-     this.service.patchEvent(results.event, activity).then(x=> {
-       console.log('gurka');
-     });
+     //var activity = {activities:activityId};
+     //this.service.patchEvent(results.event, activity).then(x=> {
+     //  console.log('gurka');
+     //});
    });
-  }
-  canDeactivate(){
-    
-  }
+ }
+ 
+canDeactivate(){}
+
 }
