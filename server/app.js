@@ -7,7 +7,7 @@ var express = require('express'),
 //var db = mongoose.connect('mongodb://localhost/bookApi');
 var db;
 if(process.env.ENV === 'Test'){
-	db = mongoose.connect('mongodb://localhost/bookApi');
+	db = mongoose.connect('mongodb://localhost/bookApi_test');
 } else {
     db = mongoose.connect('mongodb://localhost/bookApi');
 	//db = mongoose.connect('mongodb://albatrossOne:Fritte123@ds033390.mongolab.com:33390/orangealbatross');

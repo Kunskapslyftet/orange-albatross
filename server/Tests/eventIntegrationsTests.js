@@ -8,44 +8,46 @@ var should = require('should'),
 
 
 	describe('Event crud tests ', function(){
-
-//		it('Should allow a event to be created and return a _id', function(done){
-//			var eventPost = { name:'Påskuppvisning 2018', date:'2018-01-01', activities :['553d27e43d1a2c3415ef593e'] };
-//						
-//			agent.post('/api/event')
-//				.send(eventPost)
-//				.expect(200)
-//				.end(function(err, results){
-//					results.body.should.have.property('_id');
-//					done();
-//				});
-//		});
+		var eventId;
+		it('Should allow a event to be created and return a _id', function(done){
+			var eventPost = { name:'Påskuppvisning 2018', date:'2018-01-01', activities :['553d27e43d1a2c3415ef593e'] };
+						
+			agent.post('/api/event')
+				.send(eventPost)
+				.expect(200)
+				.end(function(err, results){
+					results.body.should.have.property('_id');
+					eventId = results.body._id;
+					done();
+				});
+		});
 		
-		it('event should be able to be created with activity', function () {
-			var eventId;
+		it('event should be able to be created with activity', function (done) {
+			
 			//create activity
-			var activityPost = {name:'Funkisfik', description:'Slänga käft i markan', location:'Sporthallen'};
+			var activityPost = {name:'Funkisfik', description:'Slänga käft i markan', location:'Sporthallen', event:eventId};
 			agent.post('/api/activity')
 				.send(activityPost)
 				.end(function(err, results){
-					eventId = results.body._id;
-					eventId.should.be.a.String;
+					activityId = results.body._id;
+					activityId.should.be.a.String;
+
+					results.body.event.should.equal(eventId);
 					done();
 				});
-			eventId.should.be.a.String;
 		});
 		
-		it('should be populated with activity', function (done){
-			agent.get('/api/event/55353becf180cc9c132d7364')
-				.expect(200)
-				.end(function(err, results){
-					results.body.should.have.property('name', 'RM 3');
-					done();
-				});
-		});
+		// it('should be populated with activity', function (done){
+		// 	agent.get('/api/event/55353becf180cc9c132d7364')
+		// 		.expect(200)
+		// 		.end(function(err, results){
+		// 			results.body.should.have.property('name', 'RM 3');
+		// 			done();
+		// 		});
+		// });
 
-//		afterEach(function(done){
-//			Event.remove().exec();
-//			done();
-//		});
+		afterEach(function(done){
+			Event.remove().exec();
+			done();
+		});
 	});
