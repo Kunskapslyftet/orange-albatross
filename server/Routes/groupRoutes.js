@@ -1,6 +1,7 @@
 var express = require('express');
+var _ = require('lodash');
 
-var routes = function (Group) {
+var routes = function (Group, Athlete) {
     var groupRouter = express.Router();
 
     var groupController = require('../Controllers/groupController')(Group);
@@ -9,7 +10,7 @@ var routes = function (Group) {
         .get(groupController.get);
 
     groupRouter.use('/:groupId', function (req, res, next) {
-        Group.findById(req.params.activityId, function (err, group) {
+        Group.findById(req.params.groupId, function (err, group) {
             if (err)
                 res.status(500).send(err);
             else if (group) {
@@ -21,6 +22,51 @@ var routes = function (Group) {
             }
         });
     });
+    
+     groupRouter.use('/:groupId/athlete/:athleteId', function (req, res, next) {
+       Athlete.findById(req.params.athleteId, function(err,athlete){
+            if (err)
+                res.status(500).send(err);
+            else if (athlete) {
+                req.athlete = athlete;
+                next();
+            }
+            else {
+                res.status(404).send('no athlete found');
+            }
+       })
+    });
+    
+     groupRouter.route('/:groupId/athlete/:athleteId')
+        .delete(function (req, res) {
+            //Remove athlete with athleteId from group with groupId
+            //Remove group with groupId from athlete with athleteId
+            req.athlete.group = null;
+            //remove athleteId from group.athletes
+            req.group.athletes.pull({ _id: req.params.athleteId });
+            
+            //Save athlete
+             req.athlete.save()
+                    .then(function(err) {
+                        if(err.errors){
+                            //console.log('inside then', err);
+                            res.status(500).send();   
+                        }else{
+                            req.group.save(function (err) {
+                                if (err)
+                                    res.status(500).send(err);
+                                else {
+                                    res.json(req.group);
+                                }
+                            });                            
+                         }
+                    });
+        })
+        .post(function (req, res){
+            //Add athlete with athleteId to group with groupId
+            //Add group with groupId to athlete with athleteId. Overwriting existing group
+        });
+    
     groupRouter.route('/:groupId')
         .get(function (req, res) {
             res.json(req.group);

@@ -34,7 +34,7 @@ app.use(function(req, res, next) {
 athleteRouter = require('./Routes/athleteRoutes')(Athlete);
 eventRouter = require('./Routes/eventRoutes')(Event);
 activityRouter = require('./Routes/activityRoutes')(Activity);
-groupRouter = require('./Routes/groupRoutes')(Group);
+groupRouter = require('./Routes/groupRoutes')(Group, Athlete);
 
 
 app.use('/api/athlete', athleteRouter); 
