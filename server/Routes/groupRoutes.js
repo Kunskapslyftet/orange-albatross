@@ -43,24 +43,33 @@ var routes = function (Group, Athlete) {
             //Remove group with groupId from athlete with athleteId
             req.athlete.group = null;
             //remove athleteId from group.athletes
-            req.group.athletes.pull({ _id: req.params.athleteId });
-            
-            //Save athlete
-             req.athlete.save()
-                    .then(function(err) {
-                        if(err.errors){
-                            //console.log('inside then', err);
-                            res.status(500).send();   
-                        }else{
+           
+           req.group.athletes.pull(req.params.athleteId);
                             req.group.save(function (err) {
                                 if (err)
                                     res.status(500).send(err);
                                 else {
                                     res.json(req.group);
                                 }
-                            });                            
-                         }
-                    });
+                            });   
+            
+            //Save athlete
+//             req.athlete.save()
+//                    .then(function(err) {
+//                        if(err.errors){
+//                            //console.log('inside then', err);
+//                            res.status(500).send();   
+//                        }else{
+//                            req.group.athletes.pull({ _id: req.params.athleteId });
+//                            req.group.save(function (err) {
+//                                if (err)
+//                                    res.status(500).send(err);
+//                                else {
+//                                    res.json(req.group);
+//                                }
+//                            });                            
+//                         }
+//                    });
         })
         .post(function (req, res){
             //Add athlete with athleteId to group with groupId
