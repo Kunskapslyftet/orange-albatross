@@ -42,7 +42,7 @@
        <template repeat.for="athlete of group.athletes">
         <tr>
           <td>${athlete.name}</td>
-          <td><a class="btn btn-primary btn-xs" href="#/athlete/${athlete._id}">Details</a></td>
+          <td><button class="btn btn-warning btn-xs" click.trigger="$parent.removeAthlete(athlete._id)">Remove</button> </td>
         </tr>
           </template>   
       </tbody>

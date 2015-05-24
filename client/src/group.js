@@ -22,7 +22,16 @@ export class Activity {
          self.group = group;
         });
   }
- create(){
+
+  removeAthlete(athleteId){
+    var self = this;
+    console.log(athleteId, this.group._id);
+     this.service.removeAthleteFromGroup(self.group._id, athleteId).then(results => {
+
+     });
+  }
+
+  create(){
     console.log(this.selectedEvent);
     var group = {
       name: this.name,

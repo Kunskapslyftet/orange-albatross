@@ -61,6 +61,14 @@ export class Service {
 		});
 	}
 
+	removeAthleteFromGroup(groupId, athleteId){
+			return new Promise( resolve => {
+	       this.http.delete(this.url + 'group/' + groupId + '/athlete/' + athleteId).then(response => {
+		       resolve(response.content);
+			});
+		});	
+	}
+
 //Copy paste food from flightdelay	
 	getDetails(id) {
 	  	return new Promise( resolve => {
