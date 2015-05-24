@@ -44,7 +44,15 @@ export class Service {
 			       resolve(response.content);
 		     });
 		  	});
-	  	}	
+	  	}
+
+	getGroup(id) {
+			return new Promise( resolve => {
+		       this.http.get(this.url + 'group/' + id ,'callback').then(response => {
+			       resolve(response.content);
+		     });
+		  	});
+	  	}	  		
 	postGroup(group){
 		return new Promise( resolve => {
 	       this.http.post(this.url + 'group/', group).then(response => {

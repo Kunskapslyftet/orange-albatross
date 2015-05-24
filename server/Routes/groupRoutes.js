@@ -10,8 +10,13 @@ var routes = function (Group, Athlete) {
         .get(groupController.get);
 
     groupRouter.use('/:groupId', function (req, res, next) {
-        Group.findById(req.params.groupId, function (err, group) {
-            if (err)
+        var query = {_id:req.params.groupId};
+
+        Group
+        .findById(req.params.groupId)
+        .populate('athletes')
+        .exec(function (err, group) {
+           if (err)
                 res.status(500).send(err);
             else if (group) {
                 req.group = group;
@@ -20,7 +25,19 @@ var routes = function (Group, Athlete) {
             else {
                 res.status(404).send('no group found');
             }
-        });
+            });
+        // Group.findById(req.params.groupId, function (err, group) {
+        //     if (err)
+        //         res.status(500).send(err);
+        //     else if (group) {
+        //         req.group = group;
+        //         next();
+        //     }
+        //     else {
+        //         res.status(404).send('no group found');
+        //     }
+        // });
+
     });
     
      groupRouter.use('/:groupId/athlete/:athleteId', function (req, res, next) {

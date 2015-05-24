@@ -1,32 +1,26 @@
 import {inject} from 'aurelia-framework';
 import  _  from 'lodash';
 import {Service} from './service';
+import {Router} from 'aurelia-router';
 
-
-@inject(Service)
+@inject(Service, Router)
 export class Activity {
   
-  constructor(service){
+  constructor(service, router){
     
+    this.router = router;
     this.service = service;
     this._ = _;
-    this.events = []; 
-    this.name = "";
-    this.description = "";
-    this.coach = null;
     this.heading = 'Group';
+    this.group = null;
   }
 
-  activate() {
+  activate(parameter) {
     var self = this;
-      self.service.getEvents().then(lotusNotes => {
-        var sorted = _.sortBy(lotusNotes, 'date');
-        this.events = sorted;})
-      .then(function(){
-        self.service.getGroups().then(groups => {
-          console.log(groups);
+   self.service.getGroup(parameter.id).then(group => {
+    console.log(group);
+         self.group = group;
         });
-    });
   }
  create(){
     console.log(this.selectedEvent);

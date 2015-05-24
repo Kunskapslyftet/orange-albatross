@@ -1,0 +1,26 @@
+<template>
+  <table class="table table-condensed">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Coach</th>
+          <th>Number of athletes</th>
+          <th></th>
+        </tr>
+      </thead>  
+      <tbody>
+       <template repeat.for="group of groups">
+        <tr>
+          <td>${group.name}</td>
+          <td>${group.description}</td>
+          <td>${group.coach} </td>
+          <td>${group.athletes.length}</td>
+          <td>
+            <a class="btn btn-primary btn-xs" href="#/group/${group._id}">Details</a>
+          </td>
+        </tr>
+      </template>   
+      </tbody>
+    </table>    
+</template>
