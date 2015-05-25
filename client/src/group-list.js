@@ -16,7 +16,7 @@ export class Activity {
 
   activate() {
     var self = this;
-      self.service.getGroup().then(groups => {
+      self.service.getGroups().then(groups => {
           self.groups = groups;
         });
     }

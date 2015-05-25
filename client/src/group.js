@@ -13,6 +13,7 @@ export class Activity {
     this._ = _;
     this.heading = 'Group';
     this.group = null;
+    this.edit = false;
   }
 
   activate(parameter) {

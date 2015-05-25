@@ -11,6 +11,7 @@ export class App {
       { route: 'activity',        moduleId: './activity',       nav: true },
       { route: 'group/:id',        moduleId: './group',       nav: false },
       { route: 'group-list',        moduleId: './group-list',  nav: true },
+       { route: 'athlete',        moduleId: './athlete',  nav: true },
       { route: 'child-router',  moduleId: './child-router', nav: true, title:'Child Router' }
     ]);
 
