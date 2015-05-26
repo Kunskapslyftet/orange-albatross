@@ -76,7 +76,5 @@ export class Activity {
      });
    });
   }
-  canDeactivate(){
-    
-  }
+  canDeactivate(){ }
 }
