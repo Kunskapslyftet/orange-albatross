@@ -14,8 +14,6 @@ export class Activity {
     
     this.name = "";
     this.description = "";
-    this.date = null;
-    this.time = null;
     this.selectedGroup = null;
     this.phones = [];
     this.emails = [];
@@ -58,23 +56,23 @@ export class Activity {
   
   console.log(this.selectedEvent);
   
-  var activity = {
+  var athlete = {
     name: this.name,
     description: this.description,
-    date: this.date,
-    time: this.time,
-    event: this.selectedEvent
+    phones: this.phones,
+    emails: this.emails,
+    group: this.selectedGroup
    };
    
-   this.service.postActivity(activity).then(results => {
-     //console.log(results);
-     var activityId = results._id;
-     //Update event with this activity
-     var activity = {activities:activityId};
-     this.service.patchEvent(results.event, activity).then(x=> {
-       console.log('gurka');
+   this.service.postAthlete(athlete).then(results => {
+     var athlete = results;
+     console.log(results);
+     this.service.addAthleteGroup(athlete.group, athlete._id).then(results => {
+        console.log(results);
      });
+
    });
-  }
+  };
+
   canDeactivate(){ }
 }

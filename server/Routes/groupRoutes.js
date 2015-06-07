@@ -91,6 +91,16 @@ var routes = function (Group, Athlete) {
         .post(function (req, res){
             //Add athlete with athleteId to group with groupId
             //Add group with groupId to athlete with athleteId. Overwriting existing group
+        })
+        .put(function (req, res){
+            req.group.athletes.push(req.params.athleteId);
+             req.group.save(function (err) {
+                if (err)
+                    res.status(500).send(err);
+                else {
+                    res.json(req.group);
+                }
+            });   
         });
     
     groupRouter.route('/:groupId')

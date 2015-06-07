@@ -37,6 +37,16 @@ export class Service {
 			});
 		});
 	}
+
+//Athlete
+	postAthlete(athlete){
+		return new Promise( resolve => {
+	       this.http.post(this.url + 'athlete/', athlete).then(response => {
+		       resolve(response.content);
+			});
+		});
+	}
+
 //Group
 	getGroups() {
 			return new Promise( resolve => {
@@ -62,13 +72,21 @@ export class Service {
 	}
 
 	removeAthleteFromGroup(groupId, athleteId){
-			return new Promise( resolve => {
+		return new Promise( resolve => {
 	       this.http.delete(this.url + 'group/' + groupId + '/athlete/' + athleteId).then(response => {
 		       resolve(response.content);
 			});
 		});	
 	}
 
+	addAthleteGroup(groupId, athleteId){
+		return new Promise( resolve => {
+			       this.http.put(this.url + 'group/' + groupId + '/athlete/' + athleteId).then(response => {
+				       resolve(response.content);
+					});
+				});	
+	}
+	
 //Copy paste food from flightdelay	
 	getDetails(id) {
 	  	return new Promise( resolve => {

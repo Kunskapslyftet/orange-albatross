@@ -5,7 +5,7 @@ var athleteController = function(Athlete){
 
         if(!req.body.name){
             res.status(400);
-            res.send('Title is required');
+            res.send('Name is required');
         }
         else {
             athlete.save();
