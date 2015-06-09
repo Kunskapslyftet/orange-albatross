@@ -10,8 +10,7 @@ var routes = function (Group, Athlete) {
         .get(groupController.get);
 
     groupRouter.use('/:groupId', function(req, res, next) {
-        var query = { _id: req.params.groupId };
-
+        
         Group
             .findById(req.params.groupId)
             .populate('athletes')

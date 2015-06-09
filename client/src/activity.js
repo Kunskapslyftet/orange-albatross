@@ -16,6 +16,7 @@ export class Activity {
     this.date = null;
     this.time = null;
     this.selectedEvent = null;
+    this.slots = null;
   }
 
   activate() {
@@ -33,7 +34,8 @@ export class Activity {
     description: this.description,
     date: this.date,
     time: this.time,
-    event: this.selectedEvent
+    event: this.selectedEvent,
+    slots: this.slots
    };
    
    this.service.postActivity(activity).then(results => {

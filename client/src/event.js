@@ -23,9 +23,11 @@ export class Home {
 
   loadEvent(id){
     console.log('load event with id:', id);
-    this.service.getEvent(id).then(result => {
-      this.event = result;
-    })
+    var self = this;
+    self.service.getEvent(id).then(result => {
+      self.event = result[0];
+      console.log(self.event);
+    });
     //Load event by id
   }
 

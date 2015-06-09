@@ -9,7 +9,8 @@ var activityModel = new mongoose.Schema({
 	date		: Date,
 	time		: String,
 	athletes	: [{type: mongoose.Schema.Types.ObjectId, ref: 'Athlete'}],
-	event 		: {type: mongoose.Schema.Types.ObjectId, ref: 'Event'}
+	event 		: {type: mongoose.Schema.Types.ObjectId, ref: 'Event'},
+	slots		: Number
 });
 
 module.exports =  mongoose.model('Activity', activityModel);

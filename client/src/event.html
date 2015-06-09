@@ -22,10 +22,49 @@
 		</table>
 	 </section>
 	 </div>
-	 <div class="col-xs-6">
+	 <div class="col-xs-6" show.bind="event != null">
 	 <div>Event details</div>
 		<section>
+		<div class="row">
+			<div class="col-xs-3">
+				Name
+			</div>
+			<div class="col-xs-3">
+				${event.name}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-3">
+				Date
+			</div>
+			<div class="col-xs-3">
+				${event.date}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-6">
+				Activities
+			</div>
+			<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Date</th>
+					<th>No of slots</th>
+				</tr>
+			</thead>
+			<tbody>
+			 <template repeat.for="activity of event.activities">
+			      <tr click.trigger="$parent.loadEvent(event._id)">
+					<td>${activity.name}</td>
+			        <td>${activity.date}</td>
+					<td>${activity.slots}</td>
+				</tr>
+			</template>		
+			</tbody>
+		</table>
+		</div>
 		
-	 </section>
+	 	</section>
 	 </div>
 </template>
