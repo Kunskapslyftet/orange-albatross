@@ -33,14 +33,7 @@ export class Activity {
   }
 
   create(){
-    console.log(this.selectedEvent);
-    var group = {
-      name: this.name,
-      description: this.description,
-      event: this.selectedEvent
-   };
-   
-   this.service.postGroup(group).then(results => {
+   this.service.putGroup(this.group).then(results => {
      //console.log(results);
      //var activityId = results._id;
      //Update event with this activity

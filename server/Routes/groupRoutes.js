@@ -9,39 +9,26 @@ var routes = function (Group, Athlete) {
         .post(groupController.post)
         .get(groupController.get);
 
-    groupRouter.use('/:groupId', function (req, res, next) {
-        var query = {_id:req.params.groupId};
+    groupRouter.use('/:groupId', function(req, res, next) {
+        var query = { _id: req.params.groupId };
 
         Group
-        .findById(req.params.groupId)
-        .populate('athletes')
-        .exec(function (err, group) {
-           if (err)
-                res.status(500).send(err);
-            else if (group) {
-                req.group = group;
-                next();
-            }
-            else {
-                res.status(404).send('no group found');
-            }
+            .findById(req.params.groupId)
+            .populate('athletes')
+            .exec(function(err, group) {
+                if (err)
+                    res.status(500).send(err);
+                else if (group) {
+                    req.group = group;
+                    next();
+                } else {
+                    res.status(404).send('no group found');
+                }
             });
-        // Group.findById(req.params.groupId, function (err, group) {
-        //     if (err)
-        //         res.status(500).send(err);
-        //     else if (group) {
-        //         req.group = group;
-        //         next();
-        //     }
-        //     else {
-        //         res.status(404).send('no group found');
-        //     }
-        // });
-
     });
-    
-     groupRouter.use('/:groupId/athlete/:athleteId', function (req, res, next) {
-       Athlete.findById(req.params.athleteId, function(err,athlete){
+
+    groupRouter.use('/:groupId/athlete/:athleteId', function (req, res, next) {
+        Athlete.findById(req.params.athleteId, function (err, athlete) {
             if (err)
                 res.status(500).send(err);
             else if (athlete) {
@@ -51,58 +38,58 @@ var routes = function (Group, Athlete) {
             else {
                 res.status(404).send('no athlete found');
             }
-       })
+        })
     });
-    
-     groupRouter.route('/:groupId/athlete/:athleteId')
-        .delete(function (req, res) {
-            //Remove athlete with athleteId from group with groupId
-            //Remove group with groupId from athlete with athleteId
-            req.athlete.group = null;
-            //remove athleteId from group.athletes
-           
+
+    groupRouter.route('/:groupId/athlete/:athleteId')
+       .delete(function (req, res) {
+           //Remove athlete with athleteId from group with groupId
+           //Remove group with groupId from athlete with athleteId
+           req.athlete.group = null;
+           //remove athleteId from group.athletes
+
            req.group.athletes.pull(req.params.athleteId);
-                            req.group.save(function (err) {
-                                if (err)
-                                    res.status(500).send(err);
-                                else {
-                                    res.json(req.group);
-                                }
-                            });   
-            
-            //Save athlete
-//             req.athlete.save()
-//                    .then(function(err) {
-//                        if(err.errors){
-//                            //console.log('inside then', err);
-//                            res.status(500).send();   
-//                        }else{
-//                            req.group.athletes.pull({ _id: req.params.athleteId });
-//                            req.group.save(function (err) {
-//                                if (err)
-//                                    res.status(500).send(err);
-//                                else {
-//                                    res.json(req.group);
-//                                }
-//                            });                            
-//                         }
-//                    });
-        })
-        .post(function (req, res){
-            //Add athlete with athleteId to group with groupId
-            //Add group with groupId to athlete with athleteId. Overwriting existing group
-        })
-        .put(function (req, res){
-            req.group.athletes.push(req.params.athleteId);
-             req.group.save(function (err) {
-                if (err)
-                    res.status(500).send(err);
-                else {
-                    res.json(req.group);
-                }
-            });   
-        });
-    
+           req.group.save(function (err) {
+               if (err)
+                   res.status(500).send(err);
+               else {
+                   res.json(req.group);
+               }
+           });
+
+           //Save athlete
+           //             req.athlete.save()
+           //                    .then(function(err) {
+           //                        if(err.errors){
+           //                            //console.log('inside then', err);
+           //                            res.status(500).send();   
+           //                        }else{
+           //                            req.group.athletes.pull({ _id: req.params.athleteId });
+           //                            req.group.save(function (err) {
+           //                                if (err)
+           //                                    res.status(500).send(err);
+           //                                else {
+           //                                    res.json(req.group);
+           //                                }
+           //                            });                            
+           //                         }
+           //                    });
+       })
+       .post(function (req, res) {
+           //Add athlete with athleteId to group with groupId
+           //Add group with groupId to athlete with athleteId. Overwriting existing group
+       })
+       .put(function (req, res) {
+           req.group.athletes.push(req.params.athleteId);
+           req.group.save(function (err) {
+               if (err)
+                   res.status(500).send(err);
+               else {
+                   res.json(req.group);
+               }
+           });
+       });
+
     groupRouter.route('/:groupId')
         .get(function (req, res) {
             res.json(req.group);
@@ -122,12 +109,12 @@ var routes = function (Group, Athlete) {
         })
         .patch(function (req, res) {
             if (req.body._id)
-                delete req.body._id; 
-    
+                delete req.body._id;
+
             for (var p in req.body) {
                 req.group[p] = req.body[p];
             }
-    
+
             req.group.save(function (err) {
                 if (err)
                     res.status(500).send(err);
@@ -144,7 +131,7 @@ var routes = function (Group, Athlete) {
                     res.status(204).send('Removed');
                 }
             });
-    });
+        });
     return groupRouter;
 };
 

@@ -21,6 +21,7 @@ var eventController = function(Event){
         Event
             .find(query)
             .populate('activities')
+            .populate('athletes')
             .exec(function (err, events) {
             if (err) 
                 res.status(500).send(err);

@@ -11,6 +11,7 @@ export class Home {
     this.service = service;
     this._ = _;
     this.events = []; 
+    this.event = null;
   }
 
   activate() {
@@ -18,6 +19,14 @@ export class Home {
         var sorted = _.sortBy(lotusNotes, 'date');
         this.events = sorted;
     });
+  }
+
+  loadEvent(id){
+    console.log('load event with id:', id);
+    this.service.getEvent(id).then(result => {
+      this.event = result;
+    })
+    //Load event by id
   }
 
   canDeactivate(){

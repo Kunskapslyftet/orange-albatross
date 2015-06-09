@@ -4,25 +4,17 @@
     <h2>${heading}</h2>
 
     <form role="form" submit.delegate="create()">
-       <!-- <div class="form-group">
-        <label for="fn">Event</label>
-        <select value.bind="selectedEvent" class="form-control">
-          <option>Select event</option>
-          <option repeat.for="event of events" value.bind="event._id">${event.name}</option>
-        </select>
-       </div> -->
-        
       <div class="form-group">
         <label for="fn">Name</label>
-        <input type="text" value.bind="group.name" class="form-control" id="name" placeholder="name">
+        <input type="text" value.bind="name" class="form-control" id="name" placeholder="name">
       </div>
       <div class="form-group">
         <p for="ln">Coach</p>
-        <input type="text" value.bind="group.coach" class="form-control" id="coach" placeholder="coach">
+        <input type="text" value.bind="coach" class="form-control" id="coach" placeholder="coach">
       </div>
       <div class="form-group">
         <label for="ln">Coach</label>
-        <textarea rows="2" cols="20" value.bind="group.description" class="form-control" id="description" placeholder="description"></textarea>
+        <textarea rows="2" cols="20" value.bind="description" class="form-control" id="description" placeholder="description"></textarea>
       </div>
        <div>     
         <button type="submit" class="btn btn-default">Submit</button>
@@ -31,6 +23,7 @@
   </section>
   </div>
   
+<!--
    <div class="col-xs-6">
     <table class="table table-condensed">
       <thead>
@@ -49,5 +42,6 @@
       </tbody>
     </table>    
    </div>
+-->
 </template>
 

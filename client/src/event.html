@@ -1,5 +1,6 @@
 <template>
 	<div class="col-xs-6">
+	<div>Events</div>
 	<section>
 		<table class="table table-bordered">
 			<thead>
@@ -11,7 +12,7 @@
 			</thead>
 			<tbody>
 			 <template repeat.for="event of events">
-			      <tr >
+			      <tr click.trigger="$parent.loadEvent(event._id)">
 					<td>${event.name}</td>
 			        <td>${event.date}</td>
 					<td>${event.activities.length}</td>
@@ -19,6 +20,12 @@
 			</template>		
 			</tbody>
 		</table>
+	 </section>
+	 </div>
+	 <div class="col-xs-6">
+	 <div>Event details</div>
+		<section>
+		
 	 </section>
 	 </div>
 </template>

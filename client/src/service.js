@@ -21,6 +21,14 @@ export class Service {
 	     });
 	  	});
   	}
+	getEvent(id) {
+		return new Promise( resolve => {
+	       this.http.get(this.url + 'event','callback').then(response => {
+		       resolve(response.content);
+	     });
+	  	});
+  	}
+
 	patchEvent(id, activity){
 		return new Promise( resolve => {
 	       this.http.patch(this.url + 'event/' + id, activity).then(response => {
@@ -70,7 +78,13 @@ export class Service {
 			});
 		});
 	}
-
+putGroup(group){
+		return new Promise( resolve => {
+	       this.http.put(this.url + 'group/' + group._id, group).then(response => {
+		       resolve(response.content);
+			});
+		});
+	}
 	removeAthleteFromGroup(groupId, athleteId){
 		return new Promise( resolve => {
 	       this.http.delete(this.url + 'group/' + groupId + '/athlete/' + athleteId).then(response => {
