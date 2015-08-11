@@ -45,6 +45,7 @@ export class Activity {
     if(this.newEmail === null)
       return;
 
+
     if(this.newEmail === '')
       return;
    
